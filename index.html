@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知行 AI 实战营 · 陪你把一件真实工作做完</title>
+<meta name="description" content="知行 AI 实战营：任务式 AI 陪跑。不卖「学会 AI」，而是陪你把一件真实工作做完——工资表、互动课件、商品图、知识库——交付能直接用的成果，并教会你下次自己做。个人创业者，非培训机构。">
+<meta name="theme-color" content="#0F2540">
+<meta property="og:title" content="知行AI陪跑 · 带着难题来，带着成品走">
+<meta property="og:description" content="不卖AI课。你带真实任务来（工资表、课件、短视频、商品图、知识库），陪你拆解跑通，交付能直接用的成品，还教会你下次自己做。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F2540'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Songti SC,STSong,serif' font-weight='900' text-anchor='middle' fill='%23C9AE7E'%3E知%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --cream:#F7F4EC;
+  --cream-2:#FDFBF6;
+  --navy:#0F2540;
+  --navy-2:#16324F;
+  --navy-3:#1D3E61;
+  --gold:#B4925A;
+  --gold-soft:#C9AE7E;
+  --gold-line:rgba(180,146,90,.45);
+  --slate:#7C8FA6;
+  --ink:#22303F;
+  --muted:#5A6B7E;
+  --line:rgba(15,37,64,.12);
+  --shadow:0 18px 50px rgba(15,37,64,.10);
+  --radius:14px;
+  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1040px;margin:0 auto;padding:0 24px}
+section{scroll-margin-top:84px}
+
+/* ---------- 顶部导航 ---------- */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(247,244,236,.9);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .3s ease;
+}
+.topbar.scrolled{box-shadow:0 6px 24px rgba(15,37,64,.08)}
+.topbar-inner{
+  max-width:1040px;margin:0 auto;padding:0 24px;
+  height:64px;display:flex;align-items:center;gap:18px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:17px;color:var(--navy);white-space:nowrap;margin-right:auto}
+.brand-mark{
+  width:30px;height:30px;border-radius:8px;flex:none;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%);
+  color:var(--gold-soft);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-family:var(--serif);
+}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{
+  padding:8px 10px;border-radius:8px;font-size:14px;color:var(--muted);
+  transition:color .2s,background .2s;white-space:nowrap;
+}
+.nav a:hover{color:var(--navy);background:rgba(15,37,64,.06)}
+.back-portfolio{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--gold);color:var(--gold);
+  padding:6px 13px;border-radius:999px;font-size:13px;white-space:nowrap;
+  transition:background .2s,color .2s;
+}
+.back-portfolio:hover{background:var(--gold);color:#fff}
+.menu-btn{
+  display:none;background:none;border:1px solid var(--line);
+  border-radius:8px;width:40px;height:40px;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--navy);border-radius:2px;transition:.25s}
+.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- 首屏 ---------- */
+.hero{
+  padding:92px 0 68px;
+  background:
+    radial-gradient(820px 400px at 85% -10%,rgba(180,146,90,.14),transparent 60%),
+    radial-gradient(640px 360px at -10% 22%,rgba(124,143,166,.15),transparent 55%),
+    var(--cream);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:.22em;color:var(--gold);
+  margin-bottom:22px;font-weight:600;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:var(--serif);color:var(--navy);
+  font-size:clamp(30px,5vw,54px);line-height:1.32;font-weight:700;
+  max-width:720px;letter-spacing:.01em;
+}
+.hero h1 .accent{color:var(--gold)}
+.hero .slogan{
+  margin-top:14px;font-family:var(--serif);font-size:clamp(17px,2vw,21px);
+  color:var(--navy-3);letter-spacing:.06em;
+}
+.hero .sub{margin-top:20px;font-size:clamp(15px,1.6vw,17.5px);color:var(--muted);max-width:640px}
+.hero .not-line{margin-top:14px;font-size:13.5px;color:var(--slate);display:flex;flex-wrap:wrap;gap:8px 20px}
+.hero .not-line span::before{content:"✕ ";color:var(--gold);}
+.hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 28px;border-radius:10px;font-size:15px;font-weight:600;
+  transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;border:none;
+  font-family:var(--sans);
+}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--navy);color:var(--cream-2)}
+.btn-primary:hover{background:var(--navy-3);box-shadow:0 12px 28px rgba(15,37,64,.22)}
+.btn-ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+.btn-ghost:hover{background:rgba(15,37,64,.06)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#a37f49;box-shadow:0 12px 28px rgba(180,146,90,.35)}
+
+/* ---------- 板块通用 ---------- */
+.section{padding:80px 0}
+.section.alt{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section.dark{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:var(--cream)}
+.section-head{max-width:680px;margin-bottom:42px}
+.section-head .no{font-family:var(--serif);font-size:13px;color:var(--gold);letter-spacing:.3em;margin-bottom:12px;display:block}
+.section-head h2{font-family:var(--serif);font-size:clamp(25px,3.4vw,34px);color:var(--navy);line-height:1.4;font-weight:700}
+.section.dark .section-head h2{color:var(--cream)}
+.section-head p{margin-top:14px;color:var(--muted);font-size:15px}
+.section.dark .section-head p{color:rgba(247,244,236,.75)}
+
+/* ---------- 任务类型 ---------- */
+.tasks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.task-card{
+  background:var(--cream-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px;transition:border-color .2s,transform .2s;
+}
+.task-card:hover{border-color:var(--gold-line);transform:translateY(-3px)}
+.task-card h3{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:8px}
+.task-card p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ---------- 拿走什么 ---------- */
+.takeaway{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.take-card{
+  background:var(--cream-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 26px;transition:transform .25s,box-shadow .25s;
+}
+.take-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.take-card .step{font-family:var(--serif);font-size:12.5px;color:var(--gold);letter-spacing:.2em;margin-bottom:12px}
+.take-card h3{font-family:var(--serif);font-size:18.5px;color:var(--navy);margin-bottom:10px}
+.take-card p{font-size:14px;color:var(--muted)}
+.take-card .deliver{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink)}
+.take-card .deliver b{color:var(--gold);font-weight:600}
+
+/* ---------- 真实作品 ---------- */
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.work-card{
+  position:relative;display:block;background:var(--cream-2);
+  border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;
+  transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden;
+}
+.work-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--gold)}
+.work-card::after{
+  content:"点开看完整成品 ↗";
+  position:absolute;right:22px;top:24px;font-size:12px;color:var(--gold);
+  letter-spacing:.08em;opacity:.85;
+}
+.work-card.wide{grid-column:1/-1}
+.work-card .cat{
+  display:inline-block;font-size:11.5px;font-weight:600;color:var(--gold);
+  border:1px solid var(--gold-line);border-radius:999px;padding:2px 10px;letter-spacing:.08em;margin-bottom:14px;
+}
+.work-card h3{font-family:var(--serif);font-size:19px;color:var(--navy);margin-bottom:10px;padding-right:130px}
+.work-card p{font-size:14px;color:var(--muted);max-width:560px}
+.work-card .meta{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--slate)}
+.work-card .meta b{color:var(--ink);font-weight:600}
+
+/* 模拟场景迷你条 */
+.youcan{
+  margin-top:36px;background:var(--cream);border:1px dashed var(--gold-line);
+  border-radius:var(--radius);padding:22px 26px;
+}
+.youcan .tag{
+  display:inline-block;font-size:11.5px;font-weight:600;color:var(--gold);
+  border:1px solid var(--gold-line);border-radius:999px;padding:2px 10px;letter-spacing:.08em;margin-bottom:12px;
+}
+.youcan ul{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:8px 18px}
+.youcan li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.6}
+.youcan li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.youcan li b{color:var(--ink);font-weight:600}
+
+/* ---------- 价格 ---------- */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.price-card{
+  background:var(--cream-2);border:1px solid var(--line);border-radius:16px;
+  padding:28px 26px;display:flex;flex-direction:column;
+  transition:transform .28s,box-shadow .28s,border-color .28s;
+}
+.price-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold)}
+.price-card .name{font-family:var(--serif);font-size:18px;margin-bottom:4px;color:var(--navy)}
+.price-card .desc{font-size:13px;color:var(--slate);min-height:40px}
+.price-card .amount{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--navy);margin:14px 0 4px;line-height:1}
+.price-card .amount small{font-size:14px;font-weight:400;color:var(--slate);margin-left:4px}
+.price-card ul{list-style:none;margin:16px 0 20px;flex:1}
+.price-card li{
+  font-size:13.5px;padding:7px 0 7px 22px;position:relative;color:var(--muted);
+  border-bottom:1px dashed var(--line);
+}
+.price-card li:last-child{border-bottom:none}
+.price-card li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-size:12px}
+.price-card .btn{width:100%}
+.price-extra{
+  margin-top:22px;background:var(--cream);border:1px dashed var(--line);
+  border-radius:12px;padding:16px 22px;font-size:13.5px;color:var(--muted);line-height:1.9;
+}
+.price-extra b{color:var(--navy)}
+
+/* ---------- 流程 ---------- */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.flow-step{
+  background:rgba(247,244,236,.05);border:1px solid rgba(201,174,126,.28);
+  border-radius:var(--radius);padding:22px 18px;
+}
+.flow-step .n{font-family:var(--serif);font-size:28px;color:var(--gold-soft);opacity:.9;line-height:1;margin-bottom:10px;display:block}
+.flow-step h3{font-size:15px;color:var(--cream);margin-bottom:7px}
+.flow-step p{font-size:12.5px;color:rgba(247,244,236,.65);line-height:1.65}
+.flow-trust{
+  margin-top:30px;text-align:center;font-size:13px;color:rgba(247,244,236,.72);
+  display:flex;justify-content:center;gap:10px 28px;flex-wrap:wrap;
+}
+.flow-trust span::before{content:"✓ ";color:var(--gold-soft)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:780px;margin:0 auto}
+.faq details{
+  background:var(--cream-2);border:1px solid var(--line);border-radius:12px;
+  margin-bottom:10px;overflow:hidden;transition:border-color .2s;
+}
+.faq details[open]{border-color:var(--gold-line)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:17px 21px;font-size:15px;font-weight:600;
+  color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:16px;
+  user-select:none;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--serif);font-size:19px;color:var(--gold);transition:transform .25s;flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 21px 19px;font-size:14px;color:var(--muted)}
+.faq .ans b{color:var(--navy)}
+
+/* ---------- 联系与表单 ---------- */
+.contact-wrap{
+  background:rgba(247,244,236,.05);border:1px solid rgba(201,174,126,.35);
+  border-radius:20px;padding:46px 40px;
+  display:grid;grid-template-columns:1fr 1.15fr;gap:44px;
+}
+.contact-info h2{font-family:var(--serif);font-size:clamp(23px,3vw,31px);color:var(--cream);margin-bottom:14px}
+.contact-info p{color:rgba(247,244,236,.78);font-size:14.5px;margin-bottom:16px}
+.contact-points{list-style:none;margin-top:8px}
+.contact-points li{
+  font-size:13.5px;color:rgba(247,244,236,.72);padding:7px 0 7px 24px;position:relative;
+  border-bottom:1px dashed rgba(247,244,236,.14);
+}
+.contact-points li:last-child{border-bottom:none}
+.contact-points li::before{content:"✓";position:absolute;left:0;color:var(--gold-soft);font-size:12px}
+.wx-card{
+  margin-top:24px;background:var(--cream-2);border-radius:16px;padding:20px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.wx-card img{width:148px;height:150px;display:block;border-radius:8px;flex:0 0 auto}
+.wx-meta{flex:1;min-width:180px}
+.wx-meta h3{font-size:15px;color:var(--ink);font-weight:700;margin-bottom:6px}
+.wx-meta p{font-size:12.5px;color:rgba(34,48,63,.68);line-height:1.7;margin-bottom:12px}
+.wx-id-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wx-id{
+  background:rgba(34,48,63,.07);border:1px dashed rgba(34,48,63,.3);border-radius:8px;
+  padding:6px 12px;font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.03em;
+}
+.wx-copy{
+  border:none;background:var(--gold-soft);color:#1d1a15;font-size:11.5px;font-weight:700;
+  border-radius:6px;padding:6px 12px;cursor:pointer;letter-spacing:.06em;
+}
+.wx-copy:hover{background:var(--gold)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;color:rgba(247,244,236,.65);letter-spacing:.05em}
+.field label i{font-style:normal;color:var(--gold-soft)}
+.field input,.field select,.field textarea{
+  background:rgba(247,244,236,.07);border:1px solid rgba(247,244,236,.22);
+  border-radius:10px;padding:11px 14px;font-size:14px;color:var(--cream);
+  font-family:var(--sans);outline:none;transition:border-color .2s;width:100%;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(247,244,236,.35)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold-soft)}
+.field select option{color:var(--ink)}
+.field textarea{resize:vertical;min-height:110px;line-height:1.7}
+.form-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.form-note{margin-top:14px;font-size:12px;color:rgba(247,244,236,.5);line-height:1.7}
+
+/* ---------- 页脚 ---------- */
+footer{background:#0B1B30;color:rgba(247,244,236,.72);padding:48px 0 28px;font-size:13px}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:34px}
+footer h4{font-family:var(--serif);color:var(--gold-soft);font-size:15px;margin-bottom:14px}
+footer ul{list-style:none}
+footer li{padding:3px 0;line-height:1.7}
+footer a{border-bottom:1px dotted rgba(201,174,126,.4)}
+footer a:hover{color:var(--gold-soft)}
+.foot-bottom{
+  border-top:1px solid rgba(247,244,236,.12);padding-top:22px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:12px;color:rgba(247,244,236,.45);
+}
+
+/* ---------- 动效 ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:960px){
+  .nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--cream-2);
+    border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 20px 18px;gap:2px;
+    box-shadow:0 20px 40px rgba(15,37,64,.12)}
+  .nav.open{display:flex}
+  .nav a{padding:12px 10px;border-bottom:1px dashed var(--line)}
+  .menu-btn{display:flex}
+  .back-portfolio{margin-left:auto}
+  .tasks{grid-template-columns:repeat(2,1fr)}
+  .takeaway,.price-grid,.works{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .youcan ul{grid-template-columns:repeat(2,1fr)}
+  .contact-wrap{grid-template-columns:1fr;padding:36px 26px}
+  .foot-grid{grid-template-columns:1fr;gap:26px}
+  .work-card h3{padding-right:0}
+  .work-card::after{position:static;display:inline-block;margin-bottom:10px}
+}
+@media (max-width:600px){
+  .section{padding:58px 0}
+  .hero{padding:60px 0 44px}
+  .tasks,.takeaway,.price-grid,.works,.flow{grid-template-columns:1fr}
+  .hero-cta .btn{width:100%}
+  .form-grid{grid-template-columns:1fr}
+  .form-actions .btn{width:100%}
+  .youcan ul{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== 导航 ===================== -->
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark">知行</span>
+      <span>知行 AI 实战营</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#tasks">你能带我做什么</a>
+      <a href="#takeaway">拿走什么</a>
+      <a href="#works">真实作品</a>
+      <a href="#pricing">价格</a>
+      <a href="#process">流程</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="back-portfolio" href="https://zhixing-ai-lab.mythic-oak-7853.chatgpt.site/" target="_blank" rel="noopener">← 返回作品集</a>
+    <button class="menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== 首屏 ===================== -->
+<section class="hero" id="top">
+  <div class="container">
+    <span class="eyebrow">任务式 AI 陪跑 · 个人创业者 · 非培训机构</span>
+    <h1>不卖"学会 AI"，<br>陪你把一件<span class="accent">真实工作</span>做完。</h1>
+    <p class="slogan">带着难题来，带着成品走。</p>
+    <p class="sub">
+      你的工资表、你的课件、你的短视频、你的商品图、你的客服知识库——
+      我们从任务本身出发：拆解问题、跑通流程，交付一个你现在就能用的成果，
+      并且让你看懂整个过程，下次自己也能做。
+    </p>
+    <div class="not-line">
+      <span>不卖"万能 AI"</span>
+      <span>不承诺一夜暴富</span>
+      <span>不把复杂任务说得很简单</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">提交任务需求</a>
+      <a class="btn btn-ghost" href="#works">先看真实作品</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 1. 你能带我做什么 ===================== -->
+<section class="section alt" id="tasks">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="no">01 / YOUR TASKS</span>
+      <h2>你可以带着哪些任务来</h2>
+      <p>八类任务，都是要交出真东西的活。你的任务不在这里？也没关系，先用一句话描述给我。</p>
+    </div>
+    <div class="tasks">
+      <div class="task-card reveal"><h3>自动办公</h3><p>工资表、考勤、报销、销售周报、乱七八糟的数据整理</p></div>
+      <div class="task-card reveal"><h3>PPT 与教案</h3><p>课程 PPT、商业计划书、互动课件、教案编写</p></div>
+      <div class="task-card reveal"><h3>自动剪辑</h3><p>科普与教学短视频、口播精剪、字幕与章节自动化</p></div>
+      <div class="task-card reveal"><h3>广告电商设计</h3><p>商品图、海报、详情页视觉、品牌色卡与模板</p></div>
+      <div class="task-card reveal"><h3>知识库工作台</h3><p>客服知识库、新人入职引导、个人学习管理系统</p></div>
+      <div class="task-card reveal"><h3>数据分析研究</h3><p>行业分析、量化看板、周报月报自动化</p></div>
+      <div class="task-card reveal"><h3>网站个人品牌</h3><p>个人博客、咨询网站、作品集站点搭建</p></div>
+      <div class="task-card reveal"><h3>工具排障</h3><p>AI 软件安装、账号配置、装不上配不好的各类问题</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. 拿走什么 ===================== -->
+<section class="section" id="takeaway">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="no">02 / TAKEAWAY</span>
+      <h2>每一单结束，你拿走三样东西</h2>
+      <p>不是一堆听完就忘的视频课，也不是一个你看不懂的黑箱成品。</p>
+    </div>
+    <div class="takeaway">
+      <div class="take-card reveal">
+        <div class="step">拿走 · 一</div>
+        <h3>一个能直接用的成品</h3>
+        <p>能算的表、能上课的课件、能上架的商品图。按事先约定的交付物清单逐项验收，写了什么就交什么。</p>
+        <div class="deliver"><b>怎么保证：</b>需求确认书 + 交付物清单，白纸黑字</div>
+      </div>
+      <div class="take-card reveal">
+        <div class="step">拿走 · 二</div>
+        <h3>下次自己能做的能力</h3>
+        <p>操作录屏、步骤卡、模板与提示词文件包都给你。目标是同样的任务下个月你自己动手就能完成。</p>
+        <div class="deliver"><b>交付形式：</b>录屏 + 步骤卡 + 可复用文件包</div>
+      </div>
+      <div class="take-card reveal">
+        <div class="step">拿走 · 三</div>
+        <h3>一段明确的答疑期</h3>
+        <p>交付后有约定天数的答疑期，使用中遇到的问题随时问。天数多少写进报价单，不存在口头承诺。</p>
+        <div class="deliver"><b>范围：</b>各档不同，付款前全部看到</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. 真实作品 ===================== -->
+<section class="section alt" id="works">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="no">03 / REAL WORKS</span>
+      <h2>真实作品：都是已经做出来的东西</h2>
+      <p>下面每一样都是亲手完成的完整成品，点开就能看到全部内容。空谈不如交货，作品自己说话。</p>
+    </div>
+    <div class="works">
+
+      <a class="work-card reveal" href="初中勾股定理互动课/preview.html" target="_blank" rel="noopener">
+        <span class="cat">教学 · 互动课件</span>
+        <h3>初中数学 · 勾股定理互动课</h3>
+        <p>能在课堂上直接使用的网页互动课件：图形动态演示、随堂练习即时反馈，配套教学样式与脚本。</p>
+        <div class="meta">打开方式：<b>点击卡片在新窗口运行</b> · 属于多学科互动课系列之一</div>
+      </a>
+
+      <a class="work-card reveal" href="初中历史互动课/preview.html" target="_blank" rel="noopener">
+        <span class="cat">教学 · 多学科系列</span>
+        <h3>初中历史互动课（系列代表）</h3>
+        <p>同一套方法已复用到语文、英语、化学、物理、力学等学科的互动课件。这是其中一个可直接运行的成品。</p>
+        <div class="meta">同系列还有：<b>语文 / 英语 / 化学 / 物理 / 力学</b>互动课成品</div>
+      </a>
+
+      <a class="work-card reveal" href="入职引导系统原型.html" target="_blank" rel="noopener">
+        <span class="cat">企业 · 知识库工作台</span>
+        <h3>AI 入职引导系统原型</h3>
+        <p>把"老师傅带新人"的经验变成系统：新人照着走完入职流程，包含角色引导、进度管理与知识入口。</p>
+        <div class="meta">适配场景：<b>客服团队、连锁门店、小微团队的标准化带教</b></div>
+      </a>
+
+      <a class="work-card reveal" href="AI客服SaaS_BP/deliverables/灵言智能Pre-A商业计划书.html" target="_blank" rel="noopener">
+        <span class="cat">研究 · 商业方案</span>
+        <h3>商业计划书（客服 SaaS 方向）</h3>
+        <p>从行业分析、产品定位到财务测算的完整商业计划书成品，十余章结构化文档与排版均由 AI 工作流产出、人工把关。</p>
+        <div class="meta">适合：<b>需要 BP / 行业分析 / 汇报材料的创业者与企业</b></div>
+      </a>
+
+      <a class="work-card wide reveal" href="https://github.com/hassanmphillipso-byte/zhixing-ai-camp/releases/download/v1/动漫经济学自学课程-微观核心卷.pdf" target="_blank" rel="noopener">
+        <span class="cat">课程 · 自学教材</span>
+        <h3>动漫经济学自学课程（PDF · 约 41MB）</h3>
+        <p>面向零基础读者的图解经济学自学课程：漫画叙事 + 课程结构设计，从微观核心概念到完整连载共 12 课规模。</p>
+        <div class="meta">说明：<b>点击后为 PDF 下载</b>，体积较大请耐心等待下载完成再打开</div>
+      </a>
+
+    </div>
+
+    <div class="youcan reveal">
+      <span class="tag">模拟场景 · 概念演示</span>
+      <ul>
+        <li><b>老师的互动课件</b>：一门课从大纲到可上课成品</li>
+        <li><b>行政的工资考勤</b>：每月 2 天压到 1 小时的自动表</li>
+        <li><b>博主的内容流水线</b>：选题→脚本→剪辑→分发跑通</li>
+        <li><b>商家的商品视觉</b>：一套主图详情页 + 可复用模板</li>
+        <li><b>小微的客服知识库</b>：常见问答沉淀，新人秒答</li>
+      </ul>
+      <p style="margin-top:12px;font-size:12px;color:var(--slate)">
+        以上五条为模拟场景示意，用于说明"你的任务大概长什么样、最后会长成什么"，不代表已发生的客户订单；上面五张作品卡才是真实成品。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. 价格 ===================== -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="no">04 / PRICING</span>
+      <h2>价格即边界</h2>
+      <p>每一档写清楚：做什么、不做什么、改几次、怎么退。没有隐藏条款，没有"聊了才告诉你"。</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card reveal">
+        <div class="name">卡点答疑陪跑</div>
+        <div class="desc">1 小时一对一远程答疑，聚焦你那一个卡点</div>
+        <div class="amount">99<small>元 / 小时</small></div>
+        <ul>
+          <li>围绕一个明确卡点的远程答疑陪跑</li>
+          <li>交付：问题处理思路演示 + 操作录屏</li>
+          <li>附一页步骤卡，照着能重做</li>
+          <li>3 天文字答疑期</li>
+          <li>未开工全退；开始后按时长折算退余款</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">咨询这档</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="name">工作流跑通</div>
+        <div class="desc">把一类重复任务变成一条下次你自己能跑的流程</div>
+        <div class="amount">199<small>元</small></div>
+        <ul>
+          <li>基于现有模板可跑通的 Skill / 工作流</li>
+          <li>不含纯自定义开发需求（这类转入定制评估）</li>
+          <li>工作流文件包：提示词 + 模板 + 操作手册</li>
+          <li>1 小时使用讲解 + 2 轮微调</li>
+          <li>7 天答疑期；未开工全退</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">咨询这档</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="name">单件任务交付</div>
+        <div class="desc">一个明确交付物，做完一次修改就收口</div>
+        <div class="amount">499<small>元</small></div>
+        <ul>
+          <li>一张自动算的表 / 一套课件 / 一组商品图等单件</li>
+          <li>成品 + 源文件 + 一页说明书</li>
+          <li><b style="color:var(--ink)">1 次整体修改</b>（避免无限陪跑）</li>
+          <li>14 天答疑期</li>
+          <li>未开工全退；开工后退 30%</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">咨询这档</a>
+      </div>
+
+    </div>
+
+    <div class="price-extra reveal">
+      <b>入门档：</b>9.9 元 AI 安装门诊——20 分钟远程帮你装好软件、配好账号，并明确告诉你"你要做的事能不能做、该走哪一档"。它不是万能修理服务，超出 20 分钟能解决的问题会直说。<br>
+      <b>更大任务：</b>多步流程、完整项目（网站 / 知识库 / 看板 / 课程包）复杂度差异大，不设固定一口价——描述你的任务，我评估后给出<b>定制报价</b>，含交付物清单、周期与验收标准，你看过报价单再决定。<br>
+      <b>付款与退款：</b>推荐淘宝担保交易；所有档位未开工一律全退，退款细则在付款前写进报价单。
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. 流程 ===================== -->
+<section class="section dark" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="no">05 / PROCESS</span>
+      <h2>从一句话到成品，五步走完</h2>
+      <p>每一步都有明确的产出，你随时知道事情走到哪儿了。</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step reveal"><span class="n">01</span><h3>说任务</h3><p>用页面底部表单或任意咨询入口，三句话说清：要做什么、卡在哪、什么时候要</p></div>
+      <div class="flow-step reveal"><span class="n">02</span><h3>免预诊</h3><p>15 分钟文字沟通：能不能接、报哪一档、大概多久。只给结论，不免费出方案</p></div>
+      <div class="flow-step reveal"><span class="n">03</span><h3>确认报价</h3><p>收到报价单：档位、交付物清单、修改与退款规则，看完再决定，不满意到此为止零费用</p></div>
+      <div class="flow-step reveal"><span class="n">04</span><h3>开工交付</h3><p>开工 / 中期 / 成品预览三个节点主动同步，敏感数据在你的设备与账号上操作</p></div>
+      <div class="flow-step reveal"><span class="n">05</span><h3>验收答疑</h3><p>对照清单逐项验收，按约定的修改轮次打磨到位，之后进入答疑期</p></div>
+    </div>
+    <div class="flow-trust reveal">
+      <span>未开工全退</span>
+      <span>修改轮次写进报价单</span>
+      <span>敏感数据不留存、交付后限期删除副本</span>
+      <span>不承诺流量与收入类结果</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. FAQ ===================== -->
+<section class="section alt" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="no">06 / FAQ</span>
+      <h2>常见问题</h2>
+      <p>点击展开。丑话说在前头，是对彼此时间的尊重。</p>
+    </div>
+    <div class="faq">
+      <details class="reveal">
+        <summary>和网上的 AI 课、代做有什么区别？</summary>
+        <div class="ans">课是"听完自己摸索"，代做是"做完了你还是不会"。这里的每一单围绕<b>你的真实任务</b>：既交付能用的成品，也交付录屏、模板和手册，让下一次你自己能做。但我也不神化它——复杂任务就是需要时间和来回，我不会把它说得很容易。</div>
+      </details>
+      <details class="reveal">
+        <summary>9.9 元的安装门诊到底管什么？</summary>
+        <div class="ans">管两件事：<b>装好</b>（AI 软件、账号、基础配置）和<b>判断</b>（你要做的事技术上能不能做、大概属于哪一档）。它不管"远程修好一切疑难杂症"——超出 20 分钟能解决范围的，我会直接告诉你该走哪一档，或者不建议花钱做。</div>
+      </details>
+      <details class="reveal">
+        <summary>不满意能退款吗？</summary>
+        <div class="ans">所有档位<b>未开工一律全额退</b>。开工后：99 档按已进行时长折算退余款；199 档开工 3 日内退 60%；499 档开工后退 30%，成品交付后不退；定制项目按未启动的部分退。细则付款前写在报价单里。</div>
+      </details>
+      <details class="reveal">
+        <summary>我的工资表、经营数据安全吗？</summary>
+        <div class="ans">涉敏感数据的任务优先<b>在你自己的设备和账号上</b>操作，我指导你动手；或先用脱敏样本把流程搭好再换回真实数据。工作副本交付后限期删除。更大的定制项目可以另行签署保密协议。</div>
+      </details>
+      <details class="reveal">
+        <summary>中途想加需求怎么办？</summary>
+        <div class="ans">报价单之外的新增需求不会悄悄塞进原价格：小幅调整包含在内，明显超出的部分会先告知价格、你同意了再做。不存在"做着做着变贵却不打招呼"。</div>
+      </details>
+      <details class="reveal">
+        <summary>你能保证效果吗？比如流量、销量？</summary>
+        <div class="ans"><b>不能，也永远不作这种承诺。</b>我能负责的是：交付物清单内的成果质量、约定的修改轮次和答疑期。凡是向你承诺"保流量、保收入、保学会"的服务，都建议绕开，包括对我。</div>
+      </details>
+      <details class="reveal">
+        <summary>哪些任务你不接？</summary>
+        <div class="ans">三条底线：① 学术代写、代考、冒充他人的伪造内容不接；② 要求承诺流量/排名/收入的单子不接；③ 违法违规内容不接。另外，超过我能力或产能的任务也会直说——赚不了的钱不硬接。</div>
+      </details>
+      <details class="reveal">
+        <summary>你是机构还是个人？靠谱吗？</summary>
+        <div class="ans">个人创业者，非培训机构。一个人接单意味着产能有限，所以每单认真做、宁可少接不多接；同时页面上的真实作品都是可点开的完整成品——判断靠不靠谱，最好的办法是看货。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 7. 联系与表单 ===================== -->
+<section class="section dark" id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="contact-info">
+        <span class="eyebrow" style="color:var(--gold-soft)">07 / CONTACT</span>
+        <h2>加上微信，直接聊</h2>
+        <p>不用想清楚买哪档，也不用写得很专业。加上微信后，把三句话发我就行：<b style="color:var(--cream-2)">要做什么？卡在哪？什么时候要？</b></p>
+        <ul class="contact-points">
+          <li>预诊免费，只做文字沟通，判断能不能接</li>
+          <li>不能接的任务我会直说，不绕弯推销</li>
+          <li>发出后我会尽快回复（通常当天，节假日顺延）</li>
+          <li>也想先看看水平？顶部「返回作品集」和上方真实作品随时可看</li>
+        </ul>
+        <div class="wx-card">
+          <img src="微信二维码_码.png" alt="知行AI陪跑 微信二维码" width="148" height="150">
+          <div class="wx-meta">
+            <h3>微信扫码，添加我为好友</h3>
+            <p>打开微信「扫一扫」扫左侧二维码，或在微信里搜索下方微信号添加。加好友时备注「任务」，我看到会优先通过。</p>
+            <div class="wx-id-row">
+              <span class="wx-id">微信号：tl520ab</span>
+              <button type="button" class="wx-copy" id="wxIdBtn">复制微信号</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="taskForm" onsubmit="return false;">
+        <div class="form-grid">
+          <div class="field">
+            <label>怎么称呼你</label>
+            <input type="text" id="fName" placeholder="如：王老师 / 李老板 / 匿名">
+          </div>
+          <div class="field">
+            <label>怎么联系你</label>
+            <input type="text" id="fReply" placeholder="微信号 / 手机号 / 邮箱任一（加微信聊可不填）">
+          </div>
+          <div class="field">
+            <label>任务类型</label>
+            <select id="fType">
+              <option>办公自动化（表 / 报表 / 数据整理）</option>
+              <option>PPT / 教案 / 互动课件</option>
+              <option>视频剪辑 / 内容工作流</option>
+              <option>商品图 / 海报 / 视觉设计</option>
+              <option>知识库 / 入职引导 / 学习系统</option>
+              <option>数据分析 / 看板 / 研究报告</option>
+              <option>网站 / 个人品牌站点</option>
+              <option>软件安装 / 配置排障</option>
+              <option>其他（在描述里说明）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>期望完成时间</label>
+            <input type="text" id="fDeadline" placeholder="如：本周内 / 下个月初 / 不急">
+          </div>
+          <div class="field full">
+            <label>任务描述 <i>*</i></label>
+            <textarea id="fDesc" placeholder="例：我是小学老师，想把人教版三年级上册某一单元做成课上能点的互动练习；现在只有教案文本，不知道从哪开始，两周内要用。" required></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gold" type="button" id="copyBtn">复制需求文本 · 去微信粘贴</button>
+          <button class="btn btn-ghost" type="button" id="sendBtn" style="border-color:rgba(247,244,236,.5);color:var(--cream-2)">打包发到邮箱（备用）</button>
+        </div>
+        <p class="form-note">
+          推荐走微信（左侧二维码）：填好后点「复制需求文本」，粘进聊天框发我即可，不用再逐项介绍。
+          「打包发到邮箱」会唤起邮件应用并自动填好内容，送达 1216313491@qq.com，两者任选其一。
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 页脚 ===================== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>关于真实作品与模拟场景</h4>
+        <ul>
+          <li>「真实作品」区块的五件均为本人亲手制作的完整成品，随本站一同部署、可直接打开；「动漫经济学」为独立 PDF 下载件。</li>
+          <li>「模拟场景」区块为概念演示，用于说明任务形态，<b style="color:var(--cream-2)">不代表已发生的客户订单</b>。</li>
+          <li>未来的客户案例仅在取得客户<b style="color:var(--cream-2)">单独书面授权</b>后公开，授权与任何优惠无关。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>免责声明</h4>
+        <ul>
+          <li>定位：<b style="color:var(--cream-2)">不卖"学会 AI"，而是陪你把一件真实工作做完，交付能直接用的成果。</b></li>
+          <li>效果受任务难度、配合程度与外部环境影响，不构成流量、收入、升学、涨薪类承诺。</li>
+          <li>具体价格、交付物、退款与保密条款以双方确认后的报价单与需求确认书为准，本页仅供参考。</li>
+          <li>第三方平台名称（淘宝、微信等）归属其权利人，仅作事实性提及；AI 生成内容均经人工核对，使用者仍应自行复核重要信息。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 知行 AI 实战营 · 个人创业者 · 非培训机构</span>
+      <span>带着难题来，带着成品走</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =====================================================
+     ▼▼ 上线前只需改这一处 ▼▼
+     接收邮箱（「打包发到邮箱」按钮的送达地址）与微信号。
+     换号时只改下面两个值，保存刷新即可生效。
+     ===================================================== */
+  var CONTACT_EMAIL = "1216313491@qq.com";
+  var WECHAT_ID = "tl520ab";
+
+  /* 顶部滚动阴影 */
+  var topbar = document.getElementById("topbar");
+  window.addEventListener("scroll", function(){
+    topbar.classList.toggle("scrolled", window.scrollY > 8);
+  }, {passive:true});
+
+  /* 移动端菜单 */
+  var menuBtn = document.getElementById("menuBtn");
+  var nav = document.getElementById("nav");
+  menuBtn.addEventListener("click", function(){
+    var open = nav.classList.toggle("open");
+    menuBtn.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  nav.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      nav.classList.remove("open");
+      menuBtn.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded","false");
+    });
+  });
+
+  /* 收集表单内容，生成结构化需求文本 */
+  function val(id){ return (document.getElementById(id).value || "").trim(); }
+  function collectTask(){
+    var name = val("fName") || "未署名";
+    var reply = val("fReply");
+    var type = val("fType");
+    var deadline = val("fDeadline") || "未填写";
+    var desc = val("fDesc");
+    if(!desc){ return null; }
+    var subject = "【知行AI实战营·任务需求】" + type + "—" + name;
+    var body =
+      "【称呼】" + name + "\n" +
+      "【联系我】" + (reply || "走微信联系") + "\n" +
+      "【任务类型】" + type + "\n" +
+      "【期望完成】" + deadline + "\n\n" +
+      "【任务描述】\n" + desc + "\n\n" +
+      "（来自知行AI实战营页面表单）";
+    return {subject: subject, body: body};
+  }
+
+  /* 复制需求文本（clipboard API + 兼容 file:// 的降级方案） */
+  function copyText(text, done){
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(done, function(){ legacyCopy(text, done); });
+    }else{
+      legacyCopy(text, done);
+    }
+  }
+  function legacyCopy(text, done){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+    done();
+  }
+
+  /* 按钮临时反馈 */
+  function flash(btn, okMsg){
+    var orig = btn.textContent;
+    btn.textContent = okMsg;
+    btn.disabled = true;
+    setTimeout(function(){ btn.textContent = orig; btn.disabled = false; }, 1800);
+  }
+
+  var sendBtn = document.getElementById("sendBtn");
+  var copyBtn = document.getElementById("copyBtn");
+  var wxIdBtn = document.getElementById("wxIdBtn");
+
+  wxIdBtn.addEventListener("click", function(){
+    copyText(WECHAT_ID, function(){ flash(wxIdBtn, "已复制 ✓"); });
+  });
+
+  sendBtn.addEventListener("click", function(){
+    var t = collectTask();
+    if(!t){ flash(sendBtn, "请先填写必填项"); return; }
+    if(CONTACT_EMAIL){
+      window.location.href = "mailto:" + CONTACT_EMAIL +
+        "?subject=" + encodeURIComponent(t.subject) +
+        "&body=" + encodeURIComponent(t.body);
+    }else{
+      copyText(t.subject + "\n\n" + t.body, function(){
+        flash(sendBtn, "已复制 ✓ 请手动发送");
+        alert("接收邮箱尚未配置：\n请在编辑器中打开本页，把脚本开头 CONTACT_EMAIL 填入你的邮箱并保存，之后即可一键发送。\n\n目前需求文本已复制，可直接粘贴发给对方。");
+      });
+    }
+  });
+
+  copyBtn.addEventListener("click", function(){
+    var t = collectTask();
+    if(!t){ flash(copyBtn, "请先填写必填项"); return; }
+    copyText(t.subject + "\n\n" + t.body, function(){
+      flash(copyBtn, "已复制 ✓");
+    });
+  });
+
+  /* 滚动渐显 */
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  }else{
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+  }
+
+})();
+</script>
+</body>
+</html>
