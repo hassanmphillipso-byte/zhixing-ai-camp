@@ -11,22 +11,22 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F2540'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Songti SC,STSong,serif' font-weight='900' text-anchor='middle' fill='%23C9AE7E'%3E知%3C/text%3E%3C/svg%3E">
 <style>
 :root{
-  --cream:#F7F4EC;
-  --cream-2:#FDFBF6;
+  --cream:#F5F5F7;
+  --cream-2:#FFFFFF;
   --navy:#0F2540;
   --navy-2:#16324F;
   --navy-3:#1D3E61;
   --gold:#B4925A;
   --gold-soft:#C9AE7E;
   --gold-line:rgba(180,146,90,.45);
-  --slate:#7C8FA6;
-  --ink:#22303F;
-  --muted:#5A6B7E;
-  --line:rgba(15,37,64,.12);
-  --shadow:0 18px 50px rgba(15,37,64,.10);
-  --radius:14px;
-  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
-  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --slate:#86868B;
+  --ink:#1D1D1F;
+  --muted:#6E6E73;
+  --line:rgba(0,0,0,.10);
+  --shadow:0 4px 24px rgba(0,0,0,.06);
+  --radius:18px;
+  --serif:"Songti SC","STSong","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -49,23 +49,23 @@ section{scroll-margin-top:84px}
 /* ---------- 顶部导航 ---------- */
 .topbar{
   position:sticky;top:0;z-index:100;
-  background:rgba(247,244,236,.9);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  background:rgba(245,245,247,.8);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
   border-bottom:1px solid var(--line);
   transition:box-shadow .3s ease;
 }
-.topbar.scrolled{box-shadow:0 6px 24px rgba(15,37,64,.08)}
+.topbar.scrolled{box-shadow:0 1px 0 var(--line)}
 .topbar-inner{
   max-width:1040px;margin:0 auto;padding:0 24px;
   height:64px;display:flex;align-items:center;gap:18px;
 }
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:17px;color:var(--navy);white-space:nowrap;margin-right:auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:17px;color:var(--ink);white-space:nowrap;margin-right:auto}
 .brand-mark{
   width:30px;height:30px;border-radius:8px;flex:none;
   background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%);
   color:var(--gold-soft);display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-family:var(--serif);
+  font-size:13px;
 }
 .nav{display:flex;align-items:center;gap:2px}
 .nav a{
@@ -92,12 +92,12 @@ section{scroll-margin-top:84px}
 
 /* ---------- 首屏 ---------- */
 .hero{
-  padding:92px 0 68px;
-  background:
-    radial-gradient(820px 400px at 85% -10%,rgba(180,146,90,.14),transparent 60%),
-    radial-gradient(640px 360px at -10% 22%,rgba(124,143,166,.15),transparent 55%),
-    var(--cream);
+  padding:104px 0 80px;
+  background:var(--cream);
+  text-align:center;
 }
+.hero .eyebrow{justify-content:center}
+.hero .hero-wrap{max-width:820px;margin:0 auto}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   font-size:12.5px;letter-spacing:.22em;color:var(--gold);
@@ -105,22 +105,22 @@ section{scroll-margin-top:84px}
 }
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
 .hero h1{
-  font-family:var(--serif);color:var(--navy);
-  font-size:clamp(30px,5vw,54px);line-height:1.32;font-weight:700;
-  max-width:720px;letter-spacing:.01em;
+  color:var(--ink);
+  font-size:clamp(36px,5.6vw,64px);line-height:1.12;font-weight:700;
+  max-width:820px;letter-spacing:-.015em;
 }
 .hero h1 .accent{color:var(--gold)}
 .hero .slogan{
-  margin-top:14px;font-family:var(--serif);font-size:clamp(17px,2vw,21px);
-  color:var(--navy-3);letter-spacing:.06em;
+  margin-top:18px;font-size:clamp(18px,2.1vw,23px);
+  color:var(--muted);letter-spacing:.02em;font-weight:600;
 }
-.hero .sub{margin-top:20px;font-size:clamp(15px,1.6vw,17.5px);color:var(--muted);max-width:640px}
-.hero .not-line{margin-top:14px;font-size:13.5px;color:var(--slate);display:flex;flex-wrap:wrap;gap:8px 20px}
+.hero .sub{margin-top:18px;font-size:clamp(15px,1.6vw,17.5px);color:var(--muted);max-width:640px;margin-left:auto;margin-right:auto}
+.hero .not-line{margin-top:16px;font-size:13.5px;color:var(--slate);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center}
 .hero .not-line span::before{content:"✕ ";color:var(--gold);}
-.hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.hero-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 28px;border-radius:10px;font-size:15px;font-weight:600;
+  padding:12px 26px;border-radius:999px;font-size:15px;font-weight:600;
   transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;border:none;
   font-family:var(--sans);
 }
@@ -133,15 +133,15 @@ section{scroll-margin-top:84px}
 .btn-gold:hover{background:#a37f49;box-shadow:0 12px 28px rgba(180,146,90,.35)}
 
 /* ---------- 板块通用 ---------- */
-.section{padding:80px 0}
+.section{padding:88px 0}
 .section.alt{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.section.dark{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:var(--cream)}
-.section-head{max-width:680px;margin-bottom:42px}
-.section-head .no{font-family:var(--serif);font-size:13px;color:var(--gold);letter-spacing:.3em;margin-bottom:12px;display:block}
-.section-head h2{font-family:var(--serif);font-size:clamp(25px,3.4vw,34px);color:var(--navy);line-height:1.4;font-weight:700}
-.section.dark .section-head h2{color:var(--cream)}
+.section.dark{background:var(--navy);color:#F5F5F7}
+.section-head{max-width:680px;margin-bottom:46px}
+.section-head .no{font-size:13px;color:var(--gold);letter-spacing:.3em;margin-bottom:12px;display:block}
+.section-head h2{font-size:clamp(27px,3.6vw,40px);color:var(--ink);line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.section.dark .section-head h2{color:#F5F5F7}
 .section-head p{margin-top:14px;color:var(--muted);font-size:15px}
-.section.dark .section-head p{color:rgba(247,244,236,.75)}
+.section.dark .section-head p{color:rgba(245,245,247,.7)}
 
 /* ---------- 任务类型 ---------- */
 .tasks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -150,7 +150,7 @@ section{scroll-margin-top:84px}
   padding:22px 20px;transition:border-color .2s,transform .2s;
 }
 .task-card:hover{border-color:var(--gold-line);transform:translateY(-3px)}
-.task-card h3{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:8px}
+.task-card h3{font-size:16px;color:var(--navy);margin-bottom:8px}
 .task-card p{font-size:13px;color:var(--muted);line-height:1.65}
 
 /* ---------- 拿走什么 ---------- */
@@ -160,8 +160,8 @@ section{scroll-margin-top:84px}
   padding:28px 26px;transition:transform .25s,box-shadow .25s;
 }
 .take-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.take-card .step{font-family:var(--serif);font-size:12.5px;color:var(--gold);letter-spacing:.2em;margin-bottom:12px}
-.take-card h3{font-family:var(--serif);font-size:18.5px;color:var(--navy);margin-bottom:10px}
+.take-card .step{font-size:12.5px;color:var(--gold);letter-spacing:.2em;margin-bottom:12px}
+.take-card h3{font-size:18.5px;color:var(--navy);margin-bottom:10px}
 .take-card p{font-size:14px;color:var(--muted)}
 .take-card .deliver{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink)}
 .take-card .deliver b{color:var(--gold);font-weight:600}
@@ -184,7 +184,7 @@ section{scroll-margin-top:84px}
   display:inline-block;font-size:11.5px;font-weight:600;color:var(--gold);
   border:1px solid var(--gold-line);border-radius:999px;padding:2px 10px;letter-spacing:.08em;margin-bottom:14px;
 }
-.work-card h3{font-family:var(--serif);font-size:19px;color:var(--navy);margin-bottom:10px;padding-right:130px}
+.work-card h3{font-size:19px;color:var(--navy);margin-bottom:10px;padding-right:130px}
 .work-card p{font-size:14px;color:var(--muted);max-width:560px}
 .work-card .meta{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--slate)}
 .work-card .meta b{color:var(--ink);font-weight:600}
@@ -204,30 +204,36 @@ section{scroll-margin-top:84px}
 .youcan li b{color:var(--ink);font-weight:600}
 
 /* ---------- 价格 ---------- */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .price-card{
-  background:var(--cream-2);border:1px solid var(--line);border-radius:16px;
+  background:var(--cream-2);border:1px solid var(--line);border-radius:18px;
   padding:28px 26px;display:flex;flex-direction:column;
-  transition:transform .28s,box-shadow .28s,border-color .28s;
+  transition:transform .28s,box-shadow .28s;
 }
-.price-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold)}
-.price-card .name{font-family:var(--serif);font-size:18px;margin-bottom:4px;color:var(--navy)}
-.price-card .desc{font-size:13px;color:var(--slate);min-height:40px}
-.price-card .amount{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--navy);margin:14px 0 4px;line-height:1}
-.price-card .amount small{font-size:14px;font-weight:400;color:var(--slate);margin-left:4px}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.price-card .name{font-size:17px;font-weight:700;margin-bottom:4px;color:var(--ink);letter-spacing:-.01em}
+.price-card .desc{font-size:13px;color:var(--muted);min-height:40px}
+.price-card .amount{font-size:40px;font-weight:700;color:var(--ink);margin:14px 0 4px;line-height:1;letter-spacing:-.02em}
+.price-card .amount small{font-size:14px;font-weight:500;color:var(--muted);margin-left:4px}
 .price-card ul{list-style:none;margin:16px 0 20px;flex:1}
 .price-card li{
-  font-size:13.5px;padding:7px 0 7px 22px;position:relative;color:var(--muted);
-  border-bottom:1px dashed var(--line);
+  font-size:13.5px;padding:8px 0 8px 22px;position:relative;color:var(--muted);
+  border-bottom:1px solid var(--line);
 }
 .price-card li:last-child{border-bottom:none}
 .price-card li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-size:12px}
 .price-card .btn{width:100%}
+.price-card.featured{background:var(--navy);border-color:var(--navy)}
+.price-card.featured .name{color:#F5F5F7}
+.price-card.featured .desc{color:rgba(245,245,247,.65)}
+.price-card.featured .amount{color:var(--gold-soft)}
+.price-card.featured .amount small{color:rgba(245,245,247,.55)}
+.price-card.featured li{color:rgba(245,245,247,.85);border-bottom-color:rgba(245,245,247,.12)}
 .price-extra{
-  margin-top:22px;background:var(--cream);border:1px dashed var(--line);
-  border-radius:12px;padding:16px 22px;font-size:13.5px;color:var(--muted);line-height:1.9;
+  margin-top:22px;background:var(--cream-2);border:1px solid var(--line);
+  border-radius:18px;padding:18px 24px;font-size:13.5px;color:var(--muted);line-height:1.9;
 }
-.price-extra b{color:var(--navy)}
+.price-extra b{color:var(--ink)}
 
 /* ---------- 流程 ---------- */
 .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
@@ -235,7 +241,7 @@ section{scroll-margin-top:84px}
   background:rgba(247,244,236,.05);border:1px solid rgba(201,174,126,.28);
   border-radius:var(--radius);padding:22px 18px;
 }
-.flow-step .n{font-family:var(--serif);font-size:28px;color:var(--gold-soft);opacity:.9;line-height:1;margin-bottom:10px;display:block}
+.flow-step .n{font-size:28px;color:var(--gold-soft);opacity:.9;line-height:1;margin-bottom:10px;display:block}
 .flow-step h3{font-size:15px;color:var(--cream);margin-bottom:7px}
 .flow-step p{font-size:12.5px;color:rgba(247,244,236,.65);line-height:1.65}
 .flow-trust{
@@ -247,20 +253,21 @@ section{scroll-margin-top:84px}
 /* ---------- FAQ ---------- */
 .faq{max-width:780px;margin:0 auto}
 .faq details{
-  background:var(--cream-2);border:1px solid var(--line);border-radius:12px;
-  margin-bottom:10px;overflow:hidden;transition:border-color .2s;
+  background:transparent;border:none;border-top:1px solid var(--line);
+  overflow:hidden;
 }
-.faq details[open]{border-color:var(--gold-line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{
-  list-style:none;cursor:pointer;padding:17px 21px;font-size:15px;font-weight:600;
-  color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:16px;
+  list-style:none;cursor:pointer;padding:18px 4px;font-size:15.5px;font-weight:600;
+  color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px;
   user-select:none;
 }
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--serif);font-size:19px;color:var(--gold);transition:transform .25s;flex:none}
+.faq summary::after{content:"+";font-size:20px;color:var(--muted);transition:transform .25s;flex:none;font-weight:400}
 .faq details[open] summary::after{transform:rotate(45deg)}
-.faq .ans{padding:0 21px 19px;font-size:14px;color:var(--muted)}
-.faq .ans b{color:var(--navy)}
+.faq details[open] summary{color:var(--navy)}
+.faq .ans{padding:0 4px 20px;font-size:14px;color:var(--muted)}
+.faq .ans b{color:var(--ink)}
 
 /* ---------- 联系与表单 ---------- */
 .contact-wrap{
@@ -268,7 +275,7 @@ section{scroll-margin-top:84px}
   border-radius:20px;padding:46px 40px;
   display:grid;grid-template-columns:1fr 1.15fr;gap:44px;
 }
-.contact-info h2{font-family:var(--serif);font-size:clamp(23px,3vw,31px);color:var(--cream);margin-bottom:14px}
+.contact-info h2{font-size:clamp(23px,3vw,31px);color:var(--cream);margin-bottom:14px}
 .contact-info p{color:rgba(247,244,236,.78);font-size:14.5px;margin-bottom:16px}
 .contact-points{list-style:none;margin-top:8px}
 .contact-points li{
@@ -313,17 +320,18 @@ section{scroll-margin-top:84px}
 .form-note{margin-top:14px;font-size:12px;color:rgba(247,244,236,.5);line-height:1.7}
 
 /* ---------- 页脚 ---------- */
-footer{background:#0B1B30;color:rgba(247,244,236,.72);padding:48px 0 28px;font-size:13px}
+footer{background:var(--cream);color:var(--muted);padding:48px 0 28px;font-size:13px}
 .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:34px}
-footer h4{font-family:var(--serif);color:var(--gold-soft);font-size:15px;margin-bottom:14px}
+footer h4{color:var(--ink);font-size:14px;font-weight:700;margin-bottom:14px}
 footer ul{list-style:none}
 footer li{padding:3px 0;line-height:1.7}
-footer a{border-bottom:1px dotted rgba(201,174,126,.4)}
-footer a:hover{color:var(--gold-soft)}
+footer a{border-bottom:1px dotted rgba(0,0,0,.25)}
+footer a:hover{color:var(--ink)}
+footer b{color:var(--ink)}
 .foot-bottom{
-  border-top:1px solid rgba(247,244,236,.12);padding-top:22px;
+  border-top:1px solid var(--line);padding-top:22px;
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  font-size:12px;color:rgba(247,244,236,.45);
+  font-size:12px;color:var(--slate);
 }
 
 /* ---------- 动效 ---------- */
@@ -386,6 +394,7 @@ footer a:hover{color:var(--gold-soft)}
 <!-- ===================== 首屏 ===================== -->
 <section class="hero" id="top">
   <div class="container">
+    <div class="hero-wrap">
     <span class="eyebrow">任务式 AI 陪跑 · 个人创业者 · 非培训机构</span>
     <h1>不卖"学会 AI"，<br>陪你把一件<span class="accent">真实工作</span>做完。</h1>
     <p class="slogan">带着难题来，带着成品走。</p>
@@ -402,6 +411,7 @@ footer a:hover{color:var(--gold-soft)}
     <div class="hero-cta">
       <a class="btn btn-primary" href="#contact">提交任务需求</a>
       <a class="btn btn-ghost" href="#works">先看真实作品</a>
+    </div>
     </div>
   </div>
 </section>
@@ -532,12 +542,26 @@ footer a:hover{color:var(--gold-soft)}
     <div class="price-grid">
 
       <div class="price-card reveal">
+        <div class="name">AI 安装门诊</div>
+        <div class="desc">20 分钟：装好软件、配好账号、判断能不能做</div>
+        <div class="amount">9.9<small>元</small></div>
+        <ul>
+          <li>单设备单工具的安装与基础配置</li>
+          <li>明确告诉你这事能不能做、该走哪一档</li>
+          <li>图文步骤卡，下次照着做</li>
+          <li>不是万能修理，超范围直说不收费</li>
+          <li>未开工全退</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">咨询这档</a>
+      </div>
+
+      <div class="price-card reveal">
         <div class="name">卡点答疑陪跑</div>
         <div class="desc">1 小时一对一远程答疑，聚焦你那一个卡点</div>
         <div class="amount">99<small>元 / 小时</small></div>
         <ul>
           <li>围绕一个明确卡点的远程答疑陪跑</li>
-          <li>交付：问题处理思路演示 + 操作录屏</li>
+          <li>交付：处理思路演示 + 操作录屏</li>
           <li>附一页步骤卡，照着能重做</li>
           <li>3 天文字答疑期</li>
           <li>未开工全退；开始后按时长折算退余款</li>
@@ -545,18 +569,18 @@ footer a:hover{color:var(--gold-soft)}
         <a class="btn btn-ghost" href="#contact">咨询这档</a>
       </div>
 
-      <div class="price-card reveal">
+      <div class="price-card featured reveal">
         <div class="name">工作流跑通</div>
         <div class="desc">把一类重复任务变成一条下次你自己能跑的流程</div>
         <div class="amount">199<small>元</small></div>
         <ul>
           <li>基于现有模板可跑通的 Skill / 工作流</li>
-          <li>不含纯自定义开发需求（这类转入定制评估）</li>
-          <li>工作流文件包：提示词 + 模板 + 操作手册</li>
+          <li>不含纯自定义开发需求（转入定制评估）</li>
+          <li>工作流文件包：提示词 + 模板 + 手册</li>
           <li>1 小时使用讲解 + 2 轮微调</li>
           <li>7 天答疑期；未开工全退</li>
         </ul>
-        <a class="btn btn-primary" href="#contact">咨询这档</a>
+        <a class="btn btn-gold" href="#contact">咨询这档</a>
       </div>
 
       <div class="price-card reveal">
@@ -564,21 +588,49 @@ footer a:hover{color:var(--gold-soft)}
         <div class="desc">一个明确交付物，做完一次修改就收口</div>
         <div class="amount">499<small>元</small></div>
         <ul>
-          <li>一张自动算的表 / 一套课件 / 一组商品图等单件</li>
+          <li>一张自动算的表 / 一套课件 / 一组商品图</li>
           <li>成品 + 源文件 + 一页说明书</li>
-          <li><b style="color:var(--ink)">1 次整体修改</b>（避免无限陪跑）</li>
+          <li>1 次整体修改（避免无限陪跑）</li>
           <li>14 天答疑期</li>
           <li>未开工全退；开工后退 30%</li>
         </ul>
         <a class="btn btn-ghost" href="#contact">咨询这档</a>
       </div>
 
+      <div class="price-card reveal">
+        <div class="name">多步流程定制</div>
+        <div class="desc">内容流水线、数据流程等多步骤场景</div>
+        <div class="amount">999<small>元起 · 定制报价</small></div>
+        <ul>
+          <li>多步流程搭建 + 教学</li>
+          <li>交付清单以评估后的报价单为准</li>
+          <li>常规 50% 定金 + 验收尾款</li>
+          <li>答疑期按报价单约定</li>
+          <li>未启动部分全退</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">评估任务</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="name">完整项目交付</div>
+        <div class="desc">网站 / 知识库 / 看板 / 课程包级别</div>
+        <div class="amount">2099<small>元起 · 定制报价</small></div>
+        <ul>
+          <li>需求确认书 + 里程碑交付 + 验收清单</li>
+          <li>节点同步进度，可签保密协议</li>
+          <li>里程碑付款 50 / 30 / 20</li>
+          <li>交付验收后 30 天答疑</li>
+          <li>按未启动里程碑全退</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">谈需求</a>
+      </div>
+
     </div>
 
     <div class="price-extra reveal">
-      <b>入门档：</b>9.9 元 AI 安装门诊——20 分钟远程帮你装好软件、配好账号，并明确告诉你"你要做的事能不能做、该走哪一档"。它不是万能修理服务，超出 20 分钟能解决的问题会直说。<br>
-      <b>更大任务：</b>多步流程、完整项目（网站 / 知识库 / 看板 / 课程包）复杂度差异大，不设固定一口价——描述你的任务，我评估后给出<b>定制报价</b>，含交付物清单、周期与验收标准，你看过报价单再决定。<br>
-      <b>付款与退款：</b>推荐淘宝担保交易；所有档位未开工一律全退，退款细则在付款前写进报价单。
+      <b>定制档说明：</b>999 / 2099 为起步参考价——多步流程与完整项目复杂度差异大，描述任务后出正式报价单（含交付物清单、周期、验收标准），看过再决定，不承诺一口价全包。<br>
+      <b>企业 / 经营主体采购</b>按需求单独报价，签需求确认书。<br>
+      <b>付款与退款：</b>推荐淘宝担保交易；所有档位未开工一律全退，退款细则付款前写进报价单。
     </div>
   </div>
 </section>
@@ -732,14 +784,14 @@ footer a:hover{color:var(--gold-soft)}
         <h4>关于真实作品与模拟场景</h4>
         <ul>
           <li>「真实作品」区块的五件均为本人亲手制作的完整成品，随本站一同部署、可直接打开；「动漫经济学」为独立 PDF 下载件。</li>
-          <li>「模拟场景」区块为概念演示，用于说明任务形态，<b style="color:var(--cream-2)">不代表已发生的客户订单</b>。</li>
-          <li>未来的客户案例仅在取得客户<b style="color:var(--cream-2)">单独书面授权</b>后公开，授权与任何优惠无关。</li>
+          <li>「模拟场景」区块为概念演示，用于说明任务形态，<b style="color:var(--ink)">不代表已发生的客户订单</b>。</li>
+          <li>未来的客户案例仅在取得客户<b style="color:var(--ink)">单独书面授权</b>后公开，授权与任何优惠无关。</li>
         </ul>
       </div>
       <div>
         <h4>免责声明</h4>
         <ul>
-          <li>定位：<b style="color:var(--cream-2)">不卖"学会 AI"，而是陪你把一件真实工作做完，交付能直接用的成果。</b></li>
+          <li>定位：<b style="color:var(--ink)">不卖"学会 AI"，而是陪你把一件真实工作做完，交付能直接用的成果。</b></li>
           <li>效果受任务难度、配合程度与外部环境影响，不构成流量、收入、升学、涨薪类承诺。</li>
           <li>具体价格、交付物、退款与保密条款以双方确认后的报价单与需求确认书为准，本页仅供参考。</li>
           <li>第三方平台名称（淘宝、微信等）归属其权利人，仅作事实性提及；AI 生成内容均经人工核对，使用者仍应自行复核重要信息。</li>
