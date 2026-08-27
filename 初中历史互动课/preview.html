@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#233650" />
+  <title>行走的丝路｜初中历史互动课</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="history-extra.css" />
+  <link rel="stylesheet" href="layout-redesign.css" />
+  <link rel="stylesheet" href="historical-images.css" />
+</head>
+<body>
+  <main class="shell" id="top">
+    <header class="topbar">
+      <a href="#top" class="brand" aria-label="回到课程首页"><b>史</b><span>HORIZON<br />HISTORY LAB</span></a>
+      <p>初中历史 · 七年级 · 汉代丝绸之路</p>
+      <div class="progress-pill"><span></span><b id="progressText">0 / 4 已解锁</b></div>
+    </header>
+
+    <section class="hero" aria-labelledby="courseTitle">
+      <div class="hero-copy"><p class="eyebrow">UNIT 04 · TRADE &amp; CONNECTION</p><h1 id="courseTitle">行走的<br /><i>丝路</i></h1><p>一条路，为什么能把远方的人和物连接起来？<small>不是背路线，而是像商旅一样读懂选择、风险与交流。</small></p><div class="hero-meta"><span>⟡ 1 张路线图</span><span>◌ 4 组证据</span><span>→ 1 次商旅决策</span></div></div>
+      <figure><img src="assets/silk-road-caravan.png" alt="汉代风格的商旅与骆驼行进在沙漠绿洲旁" /></figure>
+    </section>
+
+    <section class="course-overview" aria-labelledby="overviewTitle">
+      <div class="overview-intro"><p class="label">COURSE OVERVIEW · 课程总览</p><h2 id="overviewTitle">这一课，究竟讲什么？</h2><p>本课对应秦汉时期的对外交流专题，常见课名为“汉通西域和丝绸之路”或“沟通中外文明的丝绸之路”。不同教材版本课名略有不同，但核心内容一致。</p></div>
+      <div class="chapter-path"><div><b>01</b><span>张骞通西域</span><small>为什么汉朝开始更了解西域？</small></div><div><b>02</b><span>西域都护</span><small>公元前 60 年设置，西域正式归属中央政权</small></div><div><b>03</b><span>丝绸之路</span><small>从长安经河西走廊，沟通欧亚</small></div><div><b>04</b><span>文明交流</span><small>物品、技术、艺术与思想的长期流动</small></div></div>
+    </section>
+
+    <section class="exam-board" aria-labelledby="examTitle">
+      <div><p class="label">KNOWLEDGE &amp; EXAM FOCUS · 知识点与考点</p><h2 id="examTitle">把“背过”变成“会答”</h2></div>
+      <div class="exam-grid"><article><b>地图定位题</b><p><strong>必记：</strong>长安 → 河西走廊 → 西域 → 更远地区。</p><small>常见问法：丝绸之路的起点、重要通道与方向。</small></article><article><b>材料选择题</b><p><strong>必记：</strong>张骞出使促进汉朝与西域的沟通，不等于一人开出固定道路。</p><small>抓“出使、沟通、了解西域”这组关键词。</small></article><article><b>时间与意义题</b><p><strong>必记：</strong>公元前 60 年设置西域都护。</p><small>意义：西域开始正式归属中央政权管辖。</small></article><article><b>影响概括题</b><p><strong>必记：</strong>丝路促进了中外经济、文化交流。</p><small>答题要写“物品＋技术/文化”，避免只答丝绸。</small></article></div>
+    </section>
+
+    <section class="course-layout">
+      <aside class="route-list"><div class="side-title"><span>LEARNING ROUTE</span><b id="doneCount">0 / 4</b></div><nav aria-label="课程学习地图"><button class="route active" data-step="0"><b>01</b><span><strong>看见路线</strong><small>从长安出发</small></span></button><button class="route" data-step="1"><b>02</b><span><strong>读懂选择</strong><small>为什么走这里</small></span></button><button class="route" data-step="2"><b>03</b><span><strong>翻开证据</strong><small>物品怎样流动</small></span></button><button class="route" data-step="3"><b>04</b><span><strong>成为商旅</strong><small>做一次决策</small></span></button></nav><section class="teacher-tip"><b>老师提醒</b><p>丝绸之路不是地图上的一根线，而是一张不断延伸的交流网络。</p></section></aside>
+
+      <section class="stage">
+        <header class="stage-head"><div><p id="stageNo">01 · LOOK AT THE ROUTE</p><h2 id="stageTitle">从哪里出发？</h2></div><button id="reset" class="secondary">重置本步骤</button></header>
+        <section class="coach"><b>HISTORY LENS<br /><span>历史眼光</span></b><div><p id="coachText">先看“在哪里”，再问“为什么”。路线背后常常藏着地形、水源与人的选择。</p><small id="coachSub">把地图当成一个需要解释的问题，而不只是需要记忆的答案。</small></div></section>
+
+        <article class="panel active" data-panel="0">
+          <section class="goal"><b>本节目标</b><span>在简化地图上找到丝绸之路的起点、通道与连接方向。<small>能说清“从长安向西，经河西走廊进入西域”。</small></span></section>
+          <section class="map-card"><div class="map-copy"><p class="label">SIMPLIFIED ROUTE MAP · 简化示意图</p><h3>点击三个路标，拼出一段路</h3><p>地图不按比例绘制。请按从东到西的顺序点亮路标。</p></div><div class="silk-map" id="silkMap" aria-label="丝绸之路简化路线图"><div class="map-line"></div><button class="map-stop start" data-stop="changan"><b>① 长安</b><span>出发地</span></button><button class="map-stop middle" data-stop="hexi"><b>② 河西走廊</b><span>重要通道</span></button><button class="map-stop end" data-stop="xiyu"><b>③ 西域</b><span>连接更远地区</span></button><div class="map-note">东 → 西</div></div><p id="mapFeedback" class="feedback" aria-live="polite">先从“长安”开始。</p></section>
+          <section class="fact-strip"><b>关键事实</b><p>汉武帝时期，张骞两次出使西域，为汉朝了解和沟通西域创造了条件。</p><span>易错点：张骞不是“一个人开出一条固定道路”；交流网络由许多人长期连接而成。</span></section>
+          <section class="history-brief"><div><p class="label">HISTORY IN CONTEXT · 历史背景</p><h3>把“丝路”放回汉代</h3><p>汉代中原人把玉门关、阳关以西的广大地区称为“西域”。通往西域的道路并非只有一条，商旅会依地形、绿洲、政治环境和季节调整行程。</p></div><ol class="timeline"><li><b>约公元前 138 年</b><span>张骞奉命出使西域，途中经历艰难，带回对西域的见闻。</span></li><li><b>张骞归来后</b><span>汉朝对西域的认识增加，也推动了更多交往。</span></li><li><b>长期发展</b><span>商人、使者、僧侣与工匠不断往来，逐渐形成跨地区的交流网络。</span></li></ol></section>
+          <figure class="scene-evidence"><img src="assets/zhang-qian-envoy.png" alt="教学复原图：汉代使者队伍在山地通道前向西行进" /><figcaption><b>复原图 · 张骞出使西域</b><span>这不是历史照片，而是帮助理解“使者远行与沟通西域”的写实教学复原。</span></figcaption></figure>
+        </article>
+
+        <article class="panel" data-panel="1">
+          <section class="goal"><b>本节目标</b><span>用地形和补给解释：商旅为什么会选择河西走廊。<small>从“记地点”转为“用条件解释地点”。</small></span></section>
+          <div class="choice-layout"><section class="terrain-card"><p class="label">THE PROBLEM · 问题</p><h3>商旅不喜欢绕路，为什么还要走“走廊”？</h3><div class="terrain-scene"><span>北：高山</span><i>河西走廊</i><span>南：荒漠与高原</span></div><p>面对高山、荒漠和长距离行程，商旅需要更稳定的通道、水源和停留点。</p></section><section class="decision-card"><p class="label">MAKE A CLAIM · 做判断</p><h3>哪个解释最合理？</h3><div class="answers" data-question="terrain"><button data-value="wrong">因为那里离所有地方最近。</button><button data-value="right">因为这里相对便于通行，也能连接绿洲与补给点。</button><button data-value="wrong">因为商人只喜欢沿着一条直线走。</button></div><p id="terrainFeedback" class="feedback"></p></section></div>
+          <section class="thinking-strip"><b>解释公式</b><span>地形与水源</span><i>＋</i><span>人的需要</span><i>→</i><strong>路线选择</strong></section>
+          <section class="history-note"><b>补充理解</b><p>河西走廊是相对狭长的地带，北有山地，南有祁连山等地貌；它能够把中原与西域方向连接起来。路线会有分支，不能把历史上的丝路想成一条永远不变的直线。</p></section>
+        </article>
+
+        <article class="panel" data-panel="2">
+          <section class="goal"><b>本节目标</b><span>通过物品卡片，理解丝路带来的是双向、多方面的交流。<small>看见物品背后的生产、生活与文化联系。</small></span></section>
+          <section class="evidence-lab"><div class="lab-head"><div><p class="label">EVIDENCE CARDS · 证据卡</p><h3>翻开卡片，找出“交流”</h3></div><p>点击一张卡：它从哪里来？又改变了什么？</p></div><div class="evidence-grid"><button class="evidence-card silk" data-card="silk"><span class="front"><i>01</i><b>丝绸</b><small>从中国向西</small></span><span class="back"><b>轻薄、珍贵，适合远距离携带。</b><p>物品不仅在流动，也让不同地区的人认识彼此的工艺与生活。</p></span></button><button class="evidence-card grape" data-card="grape"><span class="front"><i>02</i><b>葡萄</b><small>由西向东</small></span><span class="back"><b>葡萄、石榴、苜蓿等作物传入中原。</b><p>交流会改变日常饮食、种植与饲养。</p></span></button><button class="evidence-card horse" data-card="horse"><span class="front"><i>03</i><b>良马</b><small>需求与交换</small></span><span class="back"><b>不同地区各有资源与需求。</b><p>“我有的”与“我需要的”，会让交换持续发生。</p></span></button><button class="evidence-card belief" data-card="belief"><span class="front"><i>04</i><b>思想与艺术</b><small>慢慢传播</small></span><span class="back"><b>人员往来带来不止物品。</b><p>宗教、艺术与技术也会在长期交流中传播、融合。</p></span></button></div></section>
+          <section class="exchange-table"><div><b>从东向西</b><span>丝绸、铁器等商品与工艺</span></div><div><b>从西向东</b><span>葡萄、石榴、苜蓿等作物，以及良马等资源</span></div><div><b>长期交流</b><span>人员往来促进技术、艺术与思想的传播和融合</span></div></section>
+          <figure class="scene-evidence trade-scene"><img src="assets/silk-grape-trade.png" alt="教学复原图：绿洲商人交换丝绸和葡萄" /><figcaption><b>复原图 · 绿洲中的交换</b><span>用“丝绸与葡萄”看见双向交流：不同地区交换各自拥有和需要的物品。</span></figcaption></figure>
+          <section class="check"><div><p class="label">CHECK · L2</p><h3>哪一句最准确？</h3></div><div class="answers compact" data-question="exchange"><button data-value="wrong">丝绸之路只运送丝绸。</button><button data-value="right">丝绸之路促进了物品、技术与文化的交流。</button></div></section>
+        </article>
+
+        <article class="panel" data-panel="3">
+          <section class="goal"><b>本节目标</b><span>用证据完成一次商旅决策，并说出自己的理由。<small>用“条件—选择—结果”的方式解释历史。</small></span></section>
+          <section class="merchant-card"><div><p class="label">ROLE PLAY · 角色任务</p><h3>你是从长安出发的商旅</h3><p>队伍带着丝绸和铁器，准备向西行。你必须考虑：货物、道路和补给。</p><div class="scenario"><span>货物：轻而珍贵</span><span>困难：荒漠与远路</span><span>目标：安全抵达绿洲</span></div></div><div class="merchant-choice"><p>为了提高到达的可能性，你会？</p><div class="answers" data-question="merchant"><button data-value="wrong">离开通道，直接穿越未知荒漠。</button><button data-value="right">沿通道前进，在绿洲补给，并与沿途人群交换所需物品。</button><button data-value="wrong">只带最重的货物，不考虑水源。</button></div><p id="merchantFeedback" class="feedback"></p></div></section>
+          <section class="exit-card"><div><b>EXIT TICKET · 离场任务</b><h3>完成一句历史解释</h3><p>“丝绸之路能延伸，是因为人们会根据 ______ 选择道路，并在途中进行 ______。”</p></div><textarea id="exitText" maxlength="100" placeholder="例如：地形和水源；补给与交换"></textarea><div class="exit-actions"><span id="countText">0 / 100</span><button id="saveExit">保存我的解释</button></div><p id="exitFeedback" class="feedback"></p></section>
+        </article>
+      </section>
+
+      <aside class="notebook"><p class="label">MY HISTORY NOTES</p><section><b>我走过的路标</b><div id="visitedStops" class="tags"><span>尚未开始</span></div></section><section><b>我的历史解释</b><p id="savedExit">完成任务后，这里会保存你的答案。</p></section><section><b>本课一句话</b><p>丝路是一张由地形、需求与交流共同织成的网络。</p></section><button id="exportNotes" class="secondary">导出学习笔记</button></aside>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
