@@ -43,7 +43,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
-.container{max-width:1040px;margin:0 auto;padding:0 24px}
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
 section{scroll-margin-top:84px}
 
 /* ---------- 顶部导航 ---------- */
@@ -57,7 +57,7 @@ section{scroll-margin-top:84px}
 }
 .topbar.scrolled{box-shadow:0 1px 0 var(--line)}
 .topbar-inner{
-  max-width:1040px;margin:0 auto;padding:0 24px;
+  max-width:1160px;margin:0 auto;padding:0 28px;
   height:64px;display:flex;align-items:center;gap:18px;
 }
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:17px;color:var(--ink);white-space:nowrap;margin-right:auto}
@@ -334,6 +334,39 @@ footer b{color:var(--ink)}
   font-size:12px;color:var(--slate);
 }
 
+/* ---------- 交互增强（PC 优先，移动端自动降级） ---------- */
+.progress-bar{position:fixed;top:0;left:0;height:2.5px;background:var(--gold);width:0;z-index:300}
+.nav a.active{color:var(--ink);background:rgba(0,0,0,.05)}
+.take-card,.work-card,.price-card,.task-card{position:relative}
+.take-card::before,.work-card::before,.price-card::before,.task-card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;
+  transition:opacity .35s;pointer-events:none;z-index:0;
+  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(180,146,90,.12),transparent 68%);
+}
+.take-card:hover::before,.work-card:hover::before,.price-card:hover::before,.task-card:hover::before{opacity:1}
+.price-card>*{position:relative;z-index:1}
+.back-top{
+  position:fixed;right:30px;bottom:30px;width:46px;height:46px;border-radius:999px;
+  background:var(--navy);color:#F5F5F7;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:.3s;
+  box-shadow:0 8px 24px rgba(15,37,64,.28);z-index:150;
+}
+.back-top.show{opacity:1;pointer-events:auto;transform:none}
+.back-top:hover{background:var(--navy-3);transform:translateY(-2px)}
+.filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{
+  border:1px solid var(--line);background:var(--cream-2);color:var(--muted);
+  padding:7px 16px;border-radius:999px;font-size:13px;cursor:pointer;
+  transition:all .2s;font-family:var(--sans);
+}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.work-card.hide{display:none}
+.price-card .btn{transition:transform .15s,box-shadow .2s,background .2s}
+.price-card:hover .btn{transform:scale(1.03)}
+.task-card{cursor:default}
+
 /* ---------- 动效 ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
@@ -368,6 +401,7 @@ footer b{color:var(--ink)}
 </style>
 </head>
 <body>
+<div class="progress-bar" id="progressBar"></div>
 
 <!-- ===================== 导航 ===================== -->
 <header class="topbar" id="topbar">
@@ -476,37 +510,44 @@ footer b{color:var(--ink)}
       <h2>真实作品：都是已经做出来的东西</h2>
       <p>下面每一样都是亲手完成的完整成品，点开就能看到全部内容。空谈不如交货，作品自己说话。</p>
     </div>
+    <div class="filter-bar reveal" id="worksFilter" role="tablist">
+      <button class="chip active" data-cat="all">全部作品</button>
+      <button class="chip" data-cat="jiaoxue">教学课件</button>
+      <button class="chip" data-cat="qiye">企业系统</button>
+      <button class="chip" data-cat="yanjiu">研究方案</button>
+      <button class="chip" data-cat="kecheng">课程教材</button>
+    </div>
     <div class="works">
 
-      <a class="work-card reveal" href="初中勾股定理互动课/preview.html" target="_blank" rel="noopener">
+      <a class="work-card reveal" data-cat="jiaoxue" href="初中勾股定理互动课/preview.html" target="_blank" rel="noopener">
         <span class="cat">教学 · 互动课件</span>
         <h3>初中数学 · 勾股定理互动课</h3>
         <p>能在课堂上直接使用的网页互动课件：图形动态演示、随堂练习即时反馈，配套教学样式与脚本。</p>
         <div class="meta">打开方式：<b>点击卡片在新窗口运行</b> · 属于多学科互动课系列之一</div>
       </a>
 
-      <a class="work-card reveal" href="初中历史互动课/preview.html" target="_blank" rel="noopener">
+      <a class="work-card reveal" data-cat="jiaoxue" href="初中历史互动课/preview.html" target="_blank" rel="noopener">
         <span class="cat">教学 · 多学科系列</span>
         <h3>初中历史互动课（系列代表）</h3>
         <p>同一套方法已复用到语文、英语、化学、物理、力学等学科的互动课件。这是其中一个可直接运行的成品。</p>
         <div class="meta">同系列还有：<b>语文 / 英语 / 化学 / 物理 / 力学</b>互动课成品</div>
       </a>
 
-      <a class="work-card reveal" href="入职引导系统原型.html" target="_blank" rel="noopener">
+      <a class="work-card reveal" data-cat="qiye" href="入职引导系统原型.html" target="_blank" rel="noopener">
         <span class="cat">企业 · 知识库工作台</span>
         <h3>AI 入职引导系统原型</h3>
         <p>把"老师傅带新人"的经验变成系统：新人照着走完入职流程，包含角色引导、进度管理与知识入口。</p>
         <div class="meta">适配场景：<b>客服团队、连锁门店、小微团队的标准化带教</b></div>
       </a>
 
-      <a class="work-card reveal" href="AI客服SaaS_BP/deliverables/灵言智能Pre-A商业计划书.html" target="_blank" rel="noopener">
+      <a class="work-card reveal" data-cat="yanjiu" href="AI客服SaaS_BP/deliverables/灵言智能Pre-A商业计划书.html" target="_blank" rel="noopener">
         <span class="cat">研究 · 商业方案</span>
         <h3>商业计划书（客服 SaaS 方向）</h3>
         <p>从行业分析、产品定位到财务测算的完整商业计划书成品，十余章结构化文档与排版均由 AI 工作流产出、人工把关。</p>
         <div class="meta">适合：<b>需要 BP / 行业分析 / 汇报材料的创业者与企业</b></div>
       </a>
 
-      <a class="work-card wide reveal" href="https://github.com/hassanmphillipso-byte/zhixing-ai-camp/releases/download/v1/zhixing-economics-course.pdf" target="_blank" rel="noopener">
+      <a class="work-card wide reveal" data-cat="kecheng" href="https://github.com/hassanmphillipso-byte/zhixing-ai-camp/releases/download/v1/zhixing-economics-course.pdf" target="_blank" rel="noopener">
         <span class="cat">课程 · 自学教材</span>
         <h3>动漫经济学自学课程（PDF · 约 41MB）</h3>
         <p>面向零基础读者的图解经济学自学课程：漫画叙事 + 课程结构设计，从微观核心概念到完整连载共 12 课规模。</p>
@@ -805,6 +846,8 @@ footer b{color:var(--ink)}
   </div>
 </footer>
 
+<button class="back-top" id="backTop" aria-label="回到顶部" title="回到顶部">↑</button>
+
 <script>
 (function(){
   "use strict";
@@ -914,6 +957,75 @@ footer b{color:var(--ink)}
     if(!t){ flash(copyBtn, "请先填写必填项"); return; }
     copyText(t.subject + "\n\n" + t.body, function(){
       flash(copyBtn, "已复制 ✓");
+    });
+  });
+
+  /* 阅读进度条 */
+  var progressBar = document.getElementById("progressBar");
+  function updateProgress(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    progressBar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+  }
+  window.addEventListener("scroll", updateProgress, {passive:true});
+  updateProgress();
+
+  /* 回到顶部 */
+  var backTop = document.getElementById("backTop");
+  window.addEventListener("scroll", function(){
+    backTop.classList.toggle("show", window.scrollY > 600);
+  }, {passive:true});
+  backTop.addEventListener("click", function(){
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+
+  /* 导航滚动高亮（scrollspy） */
+  var navLinks = document.querySelectorAll(".nav a");
+  if("IntersectionObserver" in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var id = "#" + e.target.id;
+          navLinks.forEach(function(l){
+            l.classList.toggle("active", l.getAttribute("href") === id);
+          });
+        }
+      });
+    }, {rootMargin:"-40% 0px -55% 0px"});
+    document.querySelectorAll("section[id]").forEach(function(s){ spy.observe(s); });
+  }
+
+  /* 卡片鼠标聚光灯（仅精确指针设备，触屏自动跳过） */
+  if(window.matchMedia && window.matchMedia("(pointer:fine)").matches){
+    document.querySelectorAll(".take-card,.work-card,.price-card,.task-card").forEach(function(card){
+      card.addEventListener("mousemove", function(ev){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (ev.clientX - r.left) + "px");
+        card.style.setProperty("--my", (ev.clientY - r.top) + "px");
+      });
+    });
+  }
+
+  /* 作品区分类筛选 */
+  var chips = document.querySelectorAll("#worksFilter .chip");
+  var workCards = document.querySelectorAll(".works .work-card");
+  chips.forEach(function(chip){
+    chip.addEventListener("click", function(){
+      chips.forEach(function(c){ c.classList.remove("active"); });
+      chip.classList.add("active");
+      var cat = chip.getAttribute("data-cat");
+      workCards.forEach(function(card){
+        var show = (cat === "all") || (card.getAttribute("data-cat") === cat);
+        card.classList.toggle("hide", !show);
+        if(show){ card.classList.add("in"); }
+      });
+    });
+  });
+
+  /* 卡片错峰入场 */
+  document.querySelectorAll(".tasks,.takeaway,.works,.price-grid,.flow").forEach(function(grid){
+    Array.prototype.forEach.call(grid.children, function(el, i){
+      el.style.transitionDelay = ((i % 3) * 80) + "ms";
     });
   });
 
